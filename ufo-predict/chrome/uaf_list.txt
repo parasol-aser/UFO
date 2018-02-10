@@ -1,0 +1,981 @@
+------- #6 use call stack  
+base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1079 :26 pc: 0x4e62cb
+   (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10c8cd7
+     (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f07c9
+      __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+        base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+          __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c9107
+   (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10f4a7d
+    operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10eec1d
+       (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+         (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+          __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+            base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+              __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~SequencedWorkerPool @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1494 :0 pc: 0x545732
+   (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x10c9278
+     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10f4b91
+      operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedb9
+        base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+          base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+             (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+              Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+                 (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                   (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                    empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                      base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                        base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                          non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                            base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                               (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                                ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                  base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                    base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                      testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c90ed
+   (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10f4a7d
+    operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10eec1d
+       (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+         (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+          __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+            base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+              __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+              ------- #6 use call stack  
+operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10eec67
+   (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+     (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+      __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+        base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+          __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x545732
+  operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedc1
+    base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+      base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+         (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+          Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+             (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+               (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                  base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                    base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                      non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                        base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                           (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                            ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                              base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                  testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+              
+------- #0 use call stack  
+base::SequencedWorkerPool::Worker::Worker(scoped_refptr<base::SequencedWorkerPool>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) @ src/base/threading/sequenced_worker_pool.cc:589 :1 pc: 0x10ec6b8
+   (inlined by) base::SequencedWorkerPool::Inner::PostTask(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const*, base::SequencedWorkerPool::SequenceToken, base::SequencedWorkerPool::WorkerShutdown, tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ src/base/threading/sequenced_worker_pool.cc:776 :0 pc: 0x10ec5e6
+     (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10f4c47
+      ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10eecbb
+        base::SequencedWorkerPool::PostDelayedTask(tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1591 :18 pc: 0x10f1b65
+          base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:994 :3 pc: 0x10f3d01
+             (inlined by) testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2478 :0 pc: 0xe0236d
+              os_stack_trace_getter @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:4918 :7 pc: 0x10152ae
+                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+operator delete(void*) @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_new_delete.cc:76 :0 pc: 0x545732
+  base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:71 :3 pc: 0x10ecbb5
+    __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+              
+              
+              
+              
+              
+------- #6 use call stack  
+operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10f2d6c
+   (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10ef48f
+     (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+      __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+        base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+          __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+__unlink_nodes @ git/chromium/src/buildtools/third_party/libc++/trunk/include/list:689 :27 pc: 0x10c945a
+  base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x545732
+   (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10c9278
+    operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10f4b91
+      base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedb9
+        base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+           (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+            Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+               (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                 (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                  empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                    base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                      base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                        non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                          base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                             (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                              ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                  base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                    testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10ef5da
+   (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+    __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10ef4ff
+  __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+operator-> @ git/chromium/src/base/memory/ref_counted.h:547 :12 pc: 0x10c93b5
+  base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1016 :0 pc: 0x636d8d
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0xdf435e
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0xdf2cb6
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f0302
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x545732
+  __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe021aa
+    testing::TestInfo::Run() @ third_party/googletest/src/googletest/include/gtest/gtest.h:0 :24 pc: 0x10160d2
+
+    
+    ------- #6 use call stack  
+ (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x4d6070
+  ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c9835
+     (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10c968c
+      operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10f4c6c
+         (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+           (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+            __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+              base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+                __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~SequencedWorkerPool @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1494 :0 pc: 0x545732
+   (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x10c9278
+     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10f4b91
+      operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedb9
+        base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+          base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+             (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+              Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+                 (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                   (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                    empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                      base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                        base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                          non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                            base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                               (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                                ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                  base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                    base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                      testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f0329
+  __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #0 use call stack  
+__insert_node_at @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:2107 :27 pc: 0x10f1993
+  base::SequencedWorkerPool::PostWorkerTask(tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1536 :18 pc: 0x10f3aa8
+    base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:997 :3 pc: 0xe0245c
+      testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x545732
+   (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10efd54
+     (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+      __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+        base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+          __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c9828
+   (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10c968c
+    operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10f4c6c
+       (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+         (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+          __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+            base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+              __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x545732
+  operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedc1
+    base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+      base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+         (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+          Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+             (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+               (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                  base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                    base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                      non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                        base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                           (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                            ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                              base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                  testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10efd1b
+   (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+    __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+                          
+                          
+                          
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1016 :0 pc: 0x636da6
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0xdf435e
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0xdf2cb6
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f0302
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x545732
+  __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe021aa
+    testing::TestInfo::Run() @ third_party/googletest/src/googletest/include/gtest/gtest.h:0 :24 pc: 0x10160d2
+
+------- #6 use call stack  
+operator-> @ git/chromium/src/base/memory/ref_counted.h:547 :12 pc: 0x10c95a0
+  base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+                          
+                          
+                          
+------- #0 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::PostTask(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const*, base::SequencedWorkerPool::SequenceToken, base::SequencedWorkerPool::WorkerShutdown, tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ src/base/threading/sequenced_worker_pool.cc:776 :0 pc: 0x10c97d3
+   (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10c968c
+    ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10f4c6c
+      base::SequencedWorkerPool::PostDelayedTask(tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1591 :18 pc: 0x10f1b65
+        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:994 :3 pc: 0x10f3d01
+           (inlined by) testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2478 :0 pc: 0xe0236d
+            os_stack_trace_getter @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:4918 :7 pc: 0x10152ae
+              testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+ (inlined by) clear @ git/chromium/src/buildtools/third_party/libc++/trunk/include/list:1009 :0 pc: 0x545732
+  clear @ git/chromium/src/buildtools/third_party/libc++/trunk/include/list:727 :20 pc: 0x10c9495
+    base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+ (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f2f10
+   (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10ef48f
+    __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+                          
+------- #0 use call stack  
+ (inlined by) BindState<void (base::(anonymous namespace)::TestTracker::*)(int), base::(anonymous namespace)::TestTracker *, int> @ git/chromium/src/base/bind_internal.h:442 :0 pc: 0x102a054
+  BindState<void (base::(anonymous namespace)::TestTracker::*)(int), base::(anonymous namespace)::TestTracker *, int> @ git/chromium/src/base/bind_internal.h:475 :9 pc: 0xe023ea
+    testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+base::internal::CallbackBase<(base::internal::CopyMode)0>::~CallbackBase() @ git/chromium/src/base/callback_internal.cc:82 :52 pc: 0x545732
+  base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1017 :21 pc: 0xdf2d71
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x102a438
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f030a
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 use call stack  
+base::SequencedWorkerPool::Worker::Worker(scoped_refptr<base::SequencedWorkerPool>, int, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&) @ src/base/threading/sequenced_worker_pool.cc:589 :1 pc: 0x10ec6c4
+   (inlined by) base::SequencedWorkerPool::Inner::PostTask(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const*, base::SequencedWorkerPool::SequenceToken, base::SequencedWorkerPool::WorkerShutdown, tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ src/base/threading/sequenced_worker_pool.cc:776 :0 pc: 0x10ec5e6
+     (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10f4c47
+      ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10eecbb
+        base::SequencedWorkerPool::PostDelayedTask(tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1591 :18 pc: 0x10f1b65
+          base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:994 :3 pc: 0x10f3d01
+             (inlined by) testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2478 :0 pc: 0xe0236d
+              os_stack_trace_getter @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:4918 :7 pc: 0x10152ae
+                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+operator delete(void*) @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_new_delete.cc:76 :0 pc: 0x545732
+  base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:71 :3 pc: 0x10ecbb5
+    __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1016 :0 pc: 0x636d99
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0xdf435e
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0xdf2cb6
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f0302
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x545732
+  __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe021aa
+    testing::TestInfo::Run() @ third_party/googletest/src/googletest/include/gtest/gtest.h:0 :24 pc: 0x10160d2
+
+
+------- #0 use call stack  
+ (inlined by) BindState<void (base::(anonymous namespace)::TestTracker::*)(int), base::(anonymous namespace)::TestTracker *, int> @ git/chromium/src/base/bind_internal.h:442 :0 pc: 0x102a063
+  BindState<void (base::(anonymous namespace)::TestTracker::*)(int), base::(anonymous namespace)::TestTracker *, int> @ git/chromium/src/base/bind_internal.h:475 :9 pc: 0xe023ea
+    testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+base::internal::CallbackBase<(base::internal::CopyMode)0>::~CallbackBase() @ git/chromium/src/base/callback_internal.cc:82 :52 pc: 0x545732
+  base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1017 :21 pc: 0xdf2d71
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x102a438
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f030a
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x4d6070
+  operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x116055d
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0119
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator delete(void*) @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_new_delete.cc:76 :0 pc: 0x545732
+  base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :1 pc: 0x1160492
+
+------- #0 use call stack  
+BindState<void (base::(anonymous namespace)::TestTracker::*)(int), base::(anonymous namespace)::TestTracker *, int> @ git/chromium/src/base/bind_internal.h:475 :9 pc: 0xe023f3
+  testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+base::internal::CallbackBase<(base::internal::CopyMode)0>::~CallbackBase() @ git/chromium/src/base/callback_internal.cc:82 :52 pc: 0x545732
+  base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1017 :21 pc: 0xdf2d71
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x102a438
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f030a
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+Run @ git/chromium/src/base/callback.h:92 :3 pc: 0xdf431c
+   (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0xdf2cb6
+     (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f0302
+      __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+        base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+          __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x545732
+  __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe021aa
+    testing::TestInfo::Run() @ third_party/googletest/src/googletest/include/gtest/gtest.h:0 :24 pc: 0x10160d2
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ src/base/threading/sequenced_worker_pool.cc:986 :0 pc: 0x4e62cb
+  SequencedTask @ src/base/threading/sequenced_worker_pool.cc:79 :3 pc: 0x10c8cd7
+     (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f2f08
+       (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10ef48f
+        __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+          base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+            __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x545732
+  Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f3632
+     (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+       (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+        empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+          base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+            base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+              non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                   (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                    ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                      base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                          testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #0 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::PostTask(std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const*, base::SequencedWorkerPool::SequenceToken, base::SequencedWorkerPool::WorkerShutdown, tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ src/base/threading/sequenced_worker_pool.cc:776 :0 pc: 0x10c97bf
+   (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10c968c
+    ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10f4c6c
+      base::SequencedWorkerPool::PostDelayedTask(tracked_objects::Location const&, base::Callback<void (), (base::internal::CopyMode)0, (base::internal::RepeatMode)0>, base::TimeDelta) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1591 :18 pc: 0x10f1b65
+        base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:994 :3 pc: 0x10f3d01
+           (inlined by) testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2478 :0 pc: 0xe0236d
+            os_stack_trace_getter @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:4918 :7 pc: 0x10152ae
+              testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 free call stack  
+ (inlined by) clear @ git/chromium/src/buildtools/third_party/libc++/trunk/include/list:1009 :0 pc: 0x545732
+  clear @ git/chromium/src/buildtools/third_party/libc++/trunk/include/list:727 :20 pc: 0x10c9495
+    base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #6 use call stack  
+base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:75 :13 pc: 0x10ecbe6
+  __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f01df
+   (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+    __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+__interceptor_pthread_mutex_unlock @ tsan/sanitizer_common/sanitizer_common_interceptors.inc:3814 :0 pc: 0x4d6070
+  base::WaitableEvent::Signal() @ git/chromium/src/base/synchronization/waitable_event_posix.cc:70 :1 pc: 0x10c95b9
+    base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:68 :3 pc: 0x10f4da6
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x545732
+   (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10c9278
+    operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10f4b91
+      base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedb9
+        base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+           (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+            Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+               (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                 (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                  empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                    base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                      base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                        non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                          base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                             (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                              ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                  base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                    testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c9117
+   (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10f4a7d
+    operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10eec1d
+       (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+         (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+          __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+            base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+              __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x545732
+  operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedc1
+    base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+      base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+         (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+          Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+             (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+               (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                  base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                    base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                      non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                        base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                           (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                            ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                              base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                  testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+
+
+------ #6 use call stack  
+ (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10ef079
+   (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+    __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+      base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x545732
+  base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f56
+     (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+      Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+         (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+           (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+            empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+              base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                  non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                    base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                       (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                        ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                          base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                            base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                              testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1009 :0 pc: 0x4deda5
+   (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10c8f26
+    ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c98e2
+       (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10c968c
+        operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10f4c6c
+           (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+             (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+              __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+                base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+                  __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~SequencedWorkerPool @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1494 :0 pc: 0x545732
+   (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x10c9278
+     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10f4b91
+      operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedb9
+        base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+          base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+             (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+              Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+                 (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                   (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                    empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                      base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                        base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                          non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                            base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                               (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                                ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                  base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                    base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                      testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) base::SequencedWorkerPool::Inner::ThreadLoop(base::SequencedWorkerPool::Worker*) @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1009 :0 pc: 0x4d5b96
+   (inlined by) FinishStartingAdditionalThread @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1395 :0 pc: 0x10c8e5e
+    ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10c90c1
+       (inlined by) base::SequencedWorkerPool::Worker::Run() @ src/base/threading/sequenced_worker_pool.cc:613 :0 pc: 0x10f4a7d
+        operator= @ git/chromium/src/base/memory/ref_counted.h:554 :18 pc: 0x10eec1d
+           (inlined by) base::SimpleThread::ThreadMain() @ chromium/src/base/threading/simple_thread.cc:69 :0 pc: 0x10f0246
+             (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10eee90
+              __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+                base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+                  __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) ~SequencedWorkerPool @ git/chromium/src/base/threading/sequenced_worker_pool.cc:1494 :0 pc: 0x545732
+   (inlined by) ~unique_ptr @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2539 :0 pc: 0x10c9278
+     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2585 :0 pc: 0x10f4b91
+      operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x10eedb9
+        base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10f3f4e
+          base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f23
+             (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+              Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+                 (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+                   (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+                    empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                      base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                        base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                          non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                            base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                               (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                                ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                                  base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                                    base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                      testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #6 use call stack  
+ (inlined by) ~basic_string @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1909 :0 pc: 0x10f09f6
+  __is_long @ git/chromium/src/buildtools/third_party/libc++/trunk/include/string:1224 :22 pc: 0x10f4db7
+    base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+      __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+operator() @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2272 :5 pc: 0x545732
+  base::DeleteHelper<base::SequencedWorkerPool>::DoDelete(void const*) @ chromium/src/base/sequenced_task_runner_helpers.h:25 :3 pc: 0x10eedc1
+    base::internal::Invoker<base::internal::BindState<void (*)(void const*), void const*>, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f3f4e
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x10f0dee
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x10f362a
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x10f49c8
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x10b1636
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x103e9bb
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x1076073
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076c6d
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x10791e2
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x1075a08
+                         (inlined by) base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:29 :0 pc: 0x10aeb2c
+                          ~Lock @ git/chromium/src/base/synchronization/lock.h:25 :12 pc: 0x116040e
+                            base::SequencedWorkerPoolOwner::~SequencedWorkerPoolOwner() @ src/base/test/sequenced_worker_pool_owner.cc:23 :55 pc: 0x116048a
+                              base::(anonymous namespace)::SequencedWorkerPoolTest_FlushForTesting_Test::TestBody() @ git/chromium/src/base/threading/sequenced_worker_pool_unittest.cc:1032 :7 pc: 0xe02cae
+                                testing::TestInfo::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:0 :11 pc: 0x101602e
+
+------- #1 use call stack  
+InvokeWith @ googletest/src/googlemock/include/gmock/gmock-spec-builders.h:1590 :40 pc: 0x564810
+  base::trace_event::MemoryDumpManager::InvokeOnMemoryDump(base::trace_event::MemoryDumpManager::ProcessMemoryDumpAsyncState*) @ src/base/trace_event/memory_dump_manager.cc:642 :52 pc: 0xe952f6
+    base::internal::Invoker<base::internal::BindState<void (base::trace_event::MemoryDumpManager::*)(base::trace_event::MemoryDumpManager::ProcessMemoryDumpAsyncState*), base::internal::UnretainedWrapper<base::trace_event::MemoryDumpManager>, base::internal::UnretainedWrapper<base::trace_event::MemoryDumpManager::ProcessMemoryDumpAsyncState> >, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0xe93f14
+       (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0xe92aad
+        Run @ git/chromium/src/base/callback.h:92 :3 pc: 0xffab15
+           (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0xe9244b
+             (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x110a915
+              empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x110d1e7
+                base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x103e9bb
+                  base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076073
+                    non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x1076c6d
+                      base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x10791e2
+                        base::Thread::Run(base::RunLoop*) @ git/chromium/src/base/threading/thread.cc:256 :1 pc: 0x1075a08
+                           (inlined by) base::Thread::ThreadMain() @ git/chromium/src/base/threading/thread.cc:341 :0 pc: 0x10aeb2c
+                             (inlined by) AutoLock @ chromium/src/base/synchronization/lock.h:115 :0 pc: 0x10f67fa
+                              Acquire @ git/chromium/src/base/synchronization/lock.h:26 :26 pc: 0x10f6ac1
+                                base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+                                  __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x10a0390
+   (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0x107699b
+     (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10791e2
+       (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x1075a08
+         (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x10aeb2c
+           (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x116040e
+             (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0xe99cc1
+              DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10d0a28
+                base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x10d0a63
+                   (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110dbe7
+                     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x110c6c4
+                       (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                        __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                          testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                            testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+
+------- #0 free call stack  
+ (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x10a0390
+   (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x107699b
+     (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x10791e2
+       (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0x1075a08
+        DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10aeb2c
+           (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x116040e
+             (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0xe99cc1
+               (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10d0a28
+                ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10d0a63
+                  base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:157 :1 pc: 0x110dbe7
+                    base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x110c6c4
+                       (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110c693
+                         (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x11082b6
+                           (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                            __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                              testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                                testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+
+
+------- #1 use call stack  
+ (inlined by) base::internal::SetCurrentThreadPriorityForPlatform(base::ThreadPriority) @ src/base/threading/platform_thread_linux.cc:103 :0 pc: 0x10b9b78
+  SetThreadCgroupsForThreadPriority @ src/base/threading/platform_thread_linux.cc:79 :3 pc: 0x104762d
+     (inlined by) base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:67 :0 pc: 0x10ec0f7
+      SetCurrentThreadPriority @ src/base/threading/platform_thread_posix.cc:257 :7 pc: 0x10ecb96
+        __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x10a0390
+   (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0x107699b
+     (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10791e2
+       (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x1075a08
+         (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x10aeb2c
+           (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x116040e
+             (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0xe99cc1
+              DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10d0a28
+                base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x10d0a63
+                   (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110dbe7
+                     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x110c6c4
+                       (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                        __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                          testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                            testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+
+------- #0 free call stack  
+ (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x10a0390
+   (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x107699b
+     (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x10791e2
+       (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0x1075a08
+        DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10aeb2c
+           (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x116040e
+             (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0xe99cc1
+               (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10d0a28
+                ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10d0a63
+                  base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:157 :1 pc: 0x110dbe7
+                    base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x110c6c4
+                       (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110c693
+                         (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x11082b6
+                           (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                            __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                              testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                                testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+
+------- #1 use call stack  
+reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :28 pc: 0x10f8e6b
+  base::internal::Invoker<base::internal::BindState<void (base::trace_event::MemoryDumpManager::*)(base::trace_event::MemoryDumpManager::ProcessMemoryDumpAsyncState*), base::internal::UnretainedWrapper<base::trace_event::MemoryDumpManager>, base::internal::UnretainedWrapper<base::trace_event::MemoryDumpManager::ProcessMemoryDumpAsyncState> >, void ()>::RunOnce(base::internal::BindStateBase*) @ git/chromium/src/base/bind_internal.h:310 :3 pc: 0x10f90db
+     (inlined by) base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*) @ chromium/src/base/debug/task_annotator.cc:59 :0 pc: 0x1127c12
+      Run @ git/chromium/src/base/callback.h:92 :3 pc: 0x11295e5
+         (inlined by) base::MessageLoop::RunTask(base::PendingTask*) @ chromium/src/base/message_loop/message_loop.cc:411 :0 pc: 0x1109aff
+           (inlined by) begin @ git/chromium/src/base/observer_list.h:133 :0 pc: 0x110a7bc
+            empty @ git/chromium/src/buildtools/third_party/libc++/trunk/include/vector:644 :23 pc: 0x110d1e7
+              base::MessageLoop::DoWork() @ chromium/src/base/message_loop/message_loop.cc:528 :13 pc: 0x103e9bb
+                base::MessagePumpDefault::Run(base::MessagePump::Delegate*) @ git/chromium/src/base/message_loop/message_pump_default.cc:33 :31 pc: 0x1076073
+                  non-virtual thunk to base::MessageLoop::Run() @ chromium/src/base/message_loop/message_loop.cc:0 :0 pc: 0x1076c6d
+                    base::RunLoop::Run() @ git/chromium/src/base/run_loop.cc:124 :13 pc: 0x10791e2
+                      base::Thread::Run(base::RunLoop*) @ git/chromium/src/base/threading/thread.cc:256 :1 pc: 0x1075a08
+                         (inlined by) base::Thread::ThreadMain() @ git/chromium/src/base/threading/thread.cc:341 :0 pc: 0x10aeb2c
+                           (inlined by) AutoLock @ chromium/src/base/synchronization/lock.h:115 :0 pc: 0x10f67fa
+                            Acquire @ git/chromium/src/base/synchronization/lock.h:26 :26 pc: 0x10f6ac1
+                              base::(anonymous namespace)::ThreadFunc(void*) @ src/base/threading/platform_thread_posix.cc:77 :3 pc: 0x10ecbee
+                                __tsan_thread_start_func @ llvm/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 :0 pc: 0x4bffbe
+
+------- #0 free call stack  
+ (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x10a0390
+   (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0x107699b
+     (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10791e2
+       (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x1075a08
+         (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x10aeb2c
+           (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x116040e
+             (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0xe99cc1
+              DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10d0a28
+                base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x10d0a63
+                   (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110dbe7
+                     (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x110c6c4
+                       (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                        __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                          testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                            testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+
+------- #0 free call stack  
+ (inlined by) ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:535 :0 pc: 0x10a0390
+   (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:640 :0 pc: 0x107699b
+     (inlined by) Release @ git/chromium/src/base/memory/ref_counted.h:372 :0 pc: 0x10791e2
+       (inlined by) Destruct @ git/chromium/src/base/memory/ref_counted.h:336 :0 pc: 0x1075a08
+        DeleteInternal @ git/chromium/src/base/memory/ref_counted.h:381 :44 pc: 0x10aeb2c
+           (inlined by) std::__1::__tree<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, base::trace_event::MemoryDumpProviderInfo::Comparator, std::__1::allocator<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > >::destroy(std::__1::__tree_node<scoped_refptr<base::trace_event::MemoryDumpProviderInfo>, void*>*) @ git/chromium/src/buildtools/third_party/libc++/trunk/include/__tree:1831 :0 pc: 0x116040e
+             (inlined by) destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1589 :0 pc: 0xe99cc1
+               (inlined by) __destroy<scoped_refptr<base::trace_event::MemoryDumpProviderInfo> > @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:1726 :0 pc: 0x10d0a28
+                ~scoped_refptr @ git/chromium/src/base/memory/ref_counted.h:534 :9 pc: 0x10d0a63
+                  base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:157 :1 pc: 0x110dbe7
+                    base::trace_event::MemoryDumpManager::~MemoryDumpManager() @ src/base/trace_event/memory_dump_manager.cc:143 :41 pc: 0x110c6c4
+                       (inlined by) base::trace_event::MemoryDumpManagerTest::TearDown() @ git/chromium/src/base/trace_event/memory_dump_manager_unittest.cc:186 :0 pc: 0x110c693
+                         (inlined by) reset @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2582 :0 pc: 0x11082b6
+                           (inlined by) first @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2213 :0 pc: 0x11082ea
+                            __get @ git/chromium/src/buildtools/third_party/libc++/trunk/include/memory:2101 :40 pc: 0xe90f1e
+                              testing::Test::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2481 :1 pc: 0x101531b
+                                testing::TestCase::Run() @ git/chromium/src/third_party/googletest/src/googletest/src/gtest.cc:2770 :44 pc: 0x1016867
+                          

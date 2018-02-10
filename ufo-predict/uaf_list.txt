@@ -1,0 +1,9 @@
+
+------- #1 use call stack  
+thread_start(void*) (in test) (test.cc:15) pc: 0x100000886
+  __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  deallocate(void*) (in test) (test.cc:27) pc: 0x100000969
+    main (in test) (test.cc:48) pc: 0x100000c00

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE1" class="ch.qos.logback.core.FileAppender">
+        <file>root.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+        <filter class="aser.ufo.misc.LogWarnFilter"/>
+    </appender>
+
+    <appender name="FILE-ALLOC" class="ch.qos.logback.core.FileAppender">
+        <file>alloc.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.FileAppender">
+        <file>error.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="aser.ufo.trace.Indexer" level="INFO" additivity="false">
+        <appender-ref ref="FILE-ERROR" />
+        <!--<appender-ref ref="STDOUT" />-->
+    </logger>
+
+
+    <logger name="aser.ufo.trace.Allocator" level="OFF" additivity="false">
+        <!--<appender-ref ref="FILE-ALLOC" />-->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="FILE1" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

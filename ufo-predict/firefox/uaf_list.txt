@@ -1,0 +1,1212 @@
+
+------- #10 use call stack  
+PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:612) pc: 0x209532
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #0 use call stack  
+mozilla::net::nsSocketTransportService::OnKeepaliveEnabledPrefChange() (in XUL) (nsThreadUtils.h:1182) pc: 0x268841
+  mozilla::net::nsSocketTransportService::UpdatePrefs() (in XUL) (nsCOMPtr.h:742) pc: 0x265d62
+    mozilla::net::nsSocketTransportService::Init() (in XUL) (nsSocketTransportService2.cpp:580) pc: 0x2659df
+      nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+        mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+          nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+            nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+              nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                  mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                    mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                      mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                        nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                          mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                            nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                              nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                  nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                    mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                      NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                        nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                          nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                            ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  mozilla::detail::RunnableMethodImpl<mozilla::net::nsSocketTransportService*, void (mozilla::net::nsSocketTransportService::*)(), true, (mozilla::RunnableKind)0>::~RunnableMethodImpl() (in XUL) (nsThreadUtils.h:1167) pc: 0x288ade
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::ProcessNextEvent(bool, bool*) (in XUL) (nsCOMPtr.h:294) pc: 0x14f113
+        NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+          mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:990) pc: 0x2671e8
+            non-virtual thunk to mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:0) pc: 0x26874e
+              nsThread::ProcessNextEvent(bool, bool*) (in XUL) (Maybe.h:224) pc: 0x14f04f
+                NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+                  mozilla::ipc::MessagePumpForNonMainThreads::Run(base::MessagePump::Delegate*) (in XUL) (MessagePump.cpp:339) pc: 0x874e03
+                    MessageLoop::Run() (in XUL) (message_loop.cc:599) pc: 0x82060f
+                      nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:509) pc: 0x14a940
+                        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+                          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+
+
+------- #10 use call stack  
+PR_Notify (in libnss3.dylib) (ptsynch.c:455) pc: 0x209902
+  nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:80) pc: 0x15a236
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 use call stack  
+wrap_pthread_mutex_unlock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3814) pc: 0x17adf
+  PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:615) pc: 0x20953d
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+
+------- #0 use call stack  
+mozilla::net::nsSocketTransportService::OnKeepaliveEnabledPrefChange() (in XUL) (nsThreadUtils.h:1182) pc: 0x268841
+  mozilla::net::nsSocketTransportService::UpdatePrefs() (in XUL) (nsCOMPtr.h:742) pc: 0x265d62
+    mozilla::net::nsSocketTransportService::Init() (in XUL) (nsSocketTransportService2.cpp:580) pc: 0x2659df
+      nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+        mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+          nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+            nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+              nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                  mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                    mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                      mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                        nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                          mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                            nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                              nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                  nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                    mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                      NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                        nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                          nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                            ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  mozilla::detail::RunnableMethodImpl<mozilla::net::nsSocketTransportService*, void (mozilla::net::nsSocketTransportService::*)(), true, (mozilla::RunnableKind)0>::~RunnableMethodImpl() (in XUL) (nsThreadUtils.h:1167) pc: 0x288ade
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::ProcessNextEvent(bool, bool*) (in XUL) (nsCOMPtr.h:294) pc: 0x14f113
+        NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+          mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:990) pc: 0x2671e8
+            non-virtual thunk to mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:0) pc: 0x26874e
+              nsThread::ProcessNextEvent(bool, bool*) (in XUL) (Maybe.h:224) pc: 0x14f04f
+                NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+                  mozilla::ipc::MessagePumpForNonMainThreads::Run(base::MessagePump::Delegate*) (in XUL) (MessagePump.cpp:339) pc: 0x874e03
+                    MessageLoop::Run() (in XUL) (message_loop.cc:599) pc: 0x82060f
+                      nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:509) pc: 0x14a940
+                        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+                          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+
+
+------- #10 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a221
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+            mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+              nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                  nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                    nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                      nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                        nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                          mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                            mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                              mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                  mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                    nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                      nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                        nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                          nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                            mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                              NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                  nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                    ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+
+
+
+------- #0 use call stack  
+nsCOMPtr_base::assign_from_qi(nsQueryInterface, nsID const&) (in XUL) (nsCOMPtr.cpp:14) pc: 0x97ed9
+  nsThread::nsChainedEventQueue::PutEvent(already_AddRefed<nsIRunnable>, mozilla::BaseAutoLock<mozilla::Mutex>&) (in XUL) (nsCOMPtr.h:519) pc: 0x14bc03
+    nsThread::PutEvent(already_AddRefed<nsIRunnable>, nsThread::nsNestedEventTarget*) (in XUL) (nsCOMPtr.h:587) pc: 0x14bb35
+      nsThread::DispatchInternal(already_AddRefed<nsIRunnable>, unsigned int, nsThread::nsNestedEventTarget*) (in XUL) (nsThread.cpp:816) pc: 0x14bd7a
+        nsThread::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThread.cpp:976) pc: 0x14cef0
+          mozilla::net::nsSocketTransportService::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsSocketTransportService2.cpp:165) pc: 0x26324c
+            mozilla::net::nsSocketTransportService::OnKeepaliveEnabledPrefChange() (in XUL) (nsSocketTransportService2.cpp:1350) pc: 0x268871
+              mozilla::net::nsSocketTransportService::UpdatePrefs() (in XUL) (nsCOMPtr.h:742) pc: 0x265d62
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsSocketTransportService2.cpp:580) pc: 0x2659df
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  mozilla::detail::RunnableMethodImpl<mozilla::net::nsSocketTransportService*, void (mozilla::net::nsSocketTransportService::*)(), true, (mozilla::RunnableKind)0>::~RunnableMethodImpl() (in XUL) (nsThreadUtils.h:1167) pc: 0x288ade
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::ProcessNextEvent(bool, bool*) (in XUL) (nsCOMPtr.h:294) pc: 0x14f113
+        NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+          mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:990) pc: 0x2671e8
+            non-virtual thunk to mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:0) pc: 0x26874e
+              nsThread::ProcessNextEvent(bool, bool*) (in XUL) (Maybe.h:224) pc: 0x14f04f
+                NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+                  mozilla::ipc::MessagePumpForNonMainThreads::Run(base::MessagePump::Delegate*) (in XUL) (MessagePump.cpp:339) pc: 0x874e03
+                    MessageLoop::Run() (in XUL) (message_loop.cc:599) pc: 0x82060f
+                      nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:509) pc: 0x14a940
+                        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+                          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+
+------- #10 use call stack  
+__tsan_atomic64_fetch_sub (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:648) pc: 0x251fe
+  mozilla::Runnable::Release() (in XUL) (atomic:1023) pc: 0x15507c
+    nsThread::ThreadFunc(void*) (in XUL) (mozalloc.h:200) pc: 0x14a917
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+            mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+              nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                  nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                    nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                      nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                        nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                          mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                            mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                              mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                  mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                    nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                      nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                        nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                          nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                            mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                              NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                  nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                    ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+
+
+------- #0 use call stack  
+__tsan_atomic64_fetch_add (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:621) pc: 0x24a59
+  mozilla::Runnable::AddRef() (in XUL) (atomic:1017) pc: 0x154ff5
+    mozilla::net::nsSocketTransportService::OnKeepaliveEnabledPrefChange() (in XUL) (AlreadyAddRefed.h:104) pc: 0x26885f
+      mozilla::net::nsSocketTransportService::UpdatePrefs() (in XUL) (nsCOMPtr.h:742) pc: 0x265d62
+        mozilla::net::nsSocketTransportService::Init() (in XUL) (nsSocketTransportService2.cpp:580) pc: 0x2659df
+          nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+            mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+              nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                  nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                    nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                      mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                        mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                          mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                            nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                              mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                  nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                    nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                      nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                        mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                          NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                            nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                              nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  mozilla::detail::RunnableMethodImpl<mozilla::net::nsSocketTransportService*, void (mozilla::net::nsSocketTransportService::*)(), true, (mozilla::RunnableKind)0>::~RunnableMethodImpl() (in XUL) (nsThreadUtils.h:1167) pc: 0x288ade
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::ProcessNextEvent(bool, bool*) (in XUL) (nsCOMPtr.h:294) pc: 0x14f113
+        NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+          mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:990) pc: 0x2671e8
+            non-virtual thunk to mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:0) pc: 0x26874e
+              nsThread::ProcessNextEvent(bool, bool*) (in XUL) (Maybe.h:224) pc: 0x14f04f
+                NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+                  mozilla::ipc::MessagePumpForNonMainThreads::Run(base::MessagePump::Delegate*) (in XUL) (MessagePump.cpp:339) pc: 0x874e03
+                    MessageLoop::Run() (in XUL) (message_loop.cc:599) pc: 0x82060f
+                      nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:509) pc: 0x14a940
+                        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+                          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+
+
+------- #10 use call stack  
+PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:596) pc: 0x2094ad
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #0 use call stack  
+mozilla::net::nsSocketTransportService::OnKeepaliveEnabledPrefChange() (in XUL) (RefPtr.h:108) pc: 0x26881c
+  mozilla::net::nsSocketTransportService::UpdatePrefs() (in XUL) (nsCOMPtr.h:742) pc: 0x265d62
+    mozilla::net::nsSocketTransportService::Init() (in XUL) (nsSocketTransportService2.cpp:580) pc: 0x2659df
+      nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+        mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+          nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+            nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+              nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                  mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                    mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                      mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                        nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                          mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                            nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                              nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                  nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                    mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                      NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                        nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                          nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                            ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  mozilla::detail::RunnableMethodImpl<mozilla::net::nsSocketTransportService*, void (mozilla::net::nsSocketTransportService::*)(), true, (mozilla::RunnableKind)0>::~RunnableMethodImpl() (in XUL) (nsThreadUtils.h:1167) pc: 0x288ade
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::ProcessNextEvent(bool, bool*) (in XUL) (nsCOMPtr.h:294) pc: 0x14f113
+        NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+          mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:990) pc: 0x2671e8
+            non-virtual thunk to mozilla::net::nsSocketTransportService::Run() (in XUL) (nsSocketTransportService2.cpp:0) pc: 0x26874e
+              nsThread::ProcessNextEvent(bool, bool*) (in XUL) (Maybe.h:224) pc: 0x14f04f
+                NS_ProcessNextEvent(nsIThread*, bool) (in XUL) (nsThreadUtils.cpp:521) pc: 0x151b6d
+                  mozilla::ipc::MessagePumpForNonMainThreads::Run(base::MessagePump::Delegate*) (in XUL) (MessagePump.cpp:339) pc: 0x874e03
+                    MessageLoop::Run() (in XUL) (message_loop.cc:599) pc: 0x82060f
+                      nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:509) pc: 0x14a940
+                        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+                          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 use call stack  
+__tsan_atomic32_fetch_add (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:616) pc: 0x248f9
+  PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:650) pc: 0x209659
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #0 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              NS_NewNamedThread(nsACString const&, nsIThread**, nsIRunnable*, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x153230
+                mozilla::net::nsSocketTransportService::Init() (in XUL) (nsThreadUtils.h:72) pc: 0x26584c
+                  nsSocketTransportServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:80) pc: 0x80f121
+                    mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                      nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                        nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                          nsGetServiceByContractIDWithError::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12eb1e
+                            nsCOMPtr_base::assign_from_gs_contractid_with_error(nsGetServiceByContractIDWithError const&, nsID const&) (in XUL) (nsCOMPtr.cpp:106) pc: 0x981fb
+                              mozilla::net::nsIOService::SetOffline(bool) (in XUL) (nsCOMPtr.h:758) pc: 0x2165b6
+                                mozilla::net::nsIOService::Init() (in XUL) (nsCOMPtr.h:758) pc: 0x215e22
+                                  mozilla::net::nsIOService::GetInstance() (in XUL) (nsIOService.cpp:347) pc: 0x2172bc
+                                    nsIOServiceConstructor(nsISupports*, nsID const&, void**) (in XUL) (nsNetModule.cpp:62) pc: 0x80ef4c
+                                      mozilla::GenericFactory::CreateInstance(nsISupports*, nsID const&, void**) (in XUL) (GenericFactory.cpp:17) pc: 0x120c15
+                                        nsComponentManagerImpl::CreateInstanceByContractID(char const*, nsISupports*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1106) pc: 0x12bc84
+                                          nsComponentManagerImpl::GetServiceByContractID(char const*, nsID const&, void**) (in XUL) (nsComponentManager.cpp:1462) pc: 0x1271ed
+                                            nsGetServiceByContractID::operator()(nsID const&, void**) const (in XUL) (nsComponentManagerUtils.cpp:67) pc: 0x12ea9e
+                                              nsCOMPtr_base::assign_from_gs_contractid(nsGetServiceByContractID, nsID const&) (in XUL) (nsCOMPtr.cpp:95) pc: 0x98173
+                                                mozilla::services::GetIOService() (in XUL) (nsCOMPtr.h:704) pc: 0x173486
+                                                  NS_NewURI(nsIURI**, nsACString const&, char const*, nsIURI*, nsIIOService*) (in XUL) (AlreadyAddRefed.h:121) pc: 0x20c8d0
+                                                    nsChromeRegistry::ManifestProcessingContext::ResolveURI(char const*) (in XUL) (nsTSubstring.h:347) pc: 0x169b11
+                                                      nsChromeRegistryChrome::ManifestLocale(nsChromeRegistry::ManifestProcessingContext&, int, char* const*, int) (in XUL) (AlreadyAddRefed.h:121) pc: 0x16a2e5
+                                                        ParseManifest(NSLocationType, mozilla::FileLocation&, char*, bool, bool) (in XUL) (ManifestParser.cpp:760) pc: 0x12192b
+
+------- #78 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:108) pc: 0x15a22d
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+__tsan_atomic32_fetch_sub (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:643) pc: 0x2508b
+  PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:544) pc: 0x2096b8
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:630) pc: 0x2095b7
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:638) pc: 0x2095d3
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+wrap_pthread_mutex_unlock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3814) pc: 0x17adf
+  PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:615) pc: 0x20953d
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:80) pc: 0x15a23e
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+__tsan_atomic64_fetch_sub (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:648) pc: 0x251fe
+  mozilla::Runnable::Release() (in XUL) (atomic:1023) pc: 0x15507c
+    nsThread::ThreadFunc(void*) (in XUL) (mozalloc.h:200) pc: 0x14a917
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:645) pc: 0x209633
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:334) pc: 0x14a90e
+  _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+    __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_Notify (in libnss3.dylib) (ptsynch.c:455) pc: 0x209902
+  nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:80) pc: 0x15a236
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:74) pc: 0x15a20f
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+wrap_pthread_mutex_lock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3800) pc: 0x1798f
+  PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:596) pc: 0x20949e
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_Notify (in libnss3.dylib) (ptsynch.c:456) pc: 0x209917
+  nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:80) pc: 0x15a236
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:596) pc: 0x2094ad
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a221
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:609) pc: 0x209520
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+
+------- #78 use call stack  
+PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:642) pc: 0x209615
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:630) pc: 0x20959f
+  nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+wrap_pthread_mutex_lock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3800) pc: 0x1798f
+  PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:630) pc: 0x20958f
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+nsThread::ThreadFunc(void*) (in XUL) (nsThread.cpp:498) pc: 0x14a8ec
+  _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+    __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+------- #78 use call stack  
+__tsan_atomic32_fetch_add (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:616) pc: 0x248f9
+  PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:650) pc: 0x209659
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+
+
+           
+------- #80 use call stack  
+PR_Notify (in libnss3.dylib) (ptsynch.c:455) pc: 0x209902
+  nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:80) pc: 0x15a236
+    nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                        ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                          ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                            ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                              SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                                nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                                  non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                    mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                      mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                        mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                          non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                            mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                              mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                                mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                                  mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+
+
+
+------- #80 use call stack  
+nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:334) pc: 0x14a90e
+  _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+    __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                    ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                      ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                        ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                          SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                            nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                              non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                  mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                    mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                      non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                        mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                          mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                            mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                              mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+
+------- #80 use call stack  
+wrap_pthread_mutex_lock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3800) pc: 0x1798f
+  PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:596) pc: 0x20949e
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                        ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                          ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                            ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                              SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                                nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                                  non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                    mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                      mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                        mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                          non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                            mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                              mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                                mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                                  mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+------- #80 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:74) pc: 0x15a20f
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                    ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                      ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                        ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                          SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                            nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                              non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                  mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                    mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                      non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                        mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                          mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                            mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                              mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+------- #80 use call stack  
+wrap_pthread_mutex_unlock (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_common_interceptors.inc:3814) pc: 0x17adf
+  PR_EnterMonitor (in libnss3.dylib) (ptsynch.c:615) pc: 0x20953d
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:228) pc: 0x15a218
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                        ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                          ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                            ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                              SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                                nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                                  non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                    mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                      mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                        mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                          non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                            mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                              mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                                mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                                  mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+------- #80 use call stack  
+nsThreadStartupEvent::Run() (in XUL) (ReentrantMonitor.h:108) pc: 0x15a22d
+  nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+    _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+      __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                    ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                      ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                        ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                          SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                            nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                              non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                  mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                    mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                      non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                        mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                          mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                            mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                              mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+
+------- #80 use call stack  
+__tsan_atomic32_fetch_sub (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:643) pc: 0x2508b
+  PR_ExitMonitor (in libnss3.dylib) (ptsynch.c:544) pc: 0x2096b8
+    nsThreadStartupEvent::Run() (in XUL) (nsThread.cpp:231) pc: 0x15a247
+      nsThread::ThreadFunc(void*) (in XUL) (nsCOMPtr.h:329) pc: 0x14a8f5
+        _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+          __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  PR_Free (in libnss3.dylib) (prmem.c:459) pc: 0x1e52b5
+    PR_DestroyMonitor (in libnss3.dylib) (ptsynch.c:554) pc: 0x2093d3
+      nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (mozalloc.h:224) pc: 0x15a320
+        mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+          nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+            nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+              nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+                nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+                  mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                    ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                      ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                        ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                          ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                            ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                              SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                                nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                                  non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                    mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                      mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                        mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                          non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                            mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                              mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                                mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                                  mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+------- #80 use call stack  
+__tsan_atomic64_fetch_sub (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interface_atomic.cc:648) pc: 0x251fe
+  mozilla::Runnable::Release() (in XUL) (atomic:1023) pc: 0x15507c
+    nsThread::ThreadFunc(void*) (in XUL) (mozalloc.h:200) pc: 0x14a917
+      _pt_root (in libnss3.dylib) (ptthread.c:219) pc: 0x20c7d0
+        __tsan_thread_start_func (in libclang_rt.tsan_osx_dynamic.dylib) (tsan_interceptors.cc:882) pc: 0x881c
+
+------- #10 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  nsThreadStartupEvent::~nsThreadStartupEvent() (in XUL) (nsThread.cpp:222) pc: 0x15a328
+    mozilla::Runnable::Release() (in XUL) (nsThreadUtils.cpp:44) pc: 0x1550bf
+      nsThread::Init(nsACString const&) (in XUL) (nsThread.cpp:708) pc: 0x14ba18
+        nsThreadManager::NewNamedThread(nsACString const&, unsigned int, nsIThread**) (in XUL) (nsThreadManager.cpp:276) pc: 0x151641
+          nsThreadPool::PutEvent(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadUtils.cpp:145) pc: 0x152ed5
+            nsThreadPool::Dispatch(already_AddRefed<nsIRunnable>, unsigned int) (in XUL) (nsThreadPool.cpp:274) pc: 0x1541a4
+              mozilla::psm::AuthCertificateHook(void*, PRFileDesc*, int, int) (in XUL) (SSLServerCertVerification.cpp:1543) pc: 0x4cc0e84
+                ssl3_AuthCertificate (in libnss3.dylib) (ssl3con.c:10805) pc: 0x2dc08e
+                  ssl3_CompleteHandleCertificate (in libnss3.dylib) (ssl3con.c:10760) pc: 0x2dbed3
+                    ssl3_HandleHandshakeMessage (in libnss3.dylib) (ssl3con.c:10628) pc: 0x2de43c
+                      ssl3_HandleRecord (in libnss3.dylib) (ssl3con.c:11984) pc: 0x2e3e88
+                        ssl3_GatherCompleteHandshake (in libnss3.dylib) (ssl3gthr.c:0) pc: 0x2f19a9
+                          SSL_ForceHandshake (in libnss3.dylib) (sslsecur.c:403) pc: 0x2f72ba
+                            nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:372) pc: 0x4d02ebd
+                              non-virtual thunk to nsNSSSocketInfo::DriveHandshake() (in XUL) (nsNSSIOLayer.cpp:0) pc: 0x4d02f21
+                                mozilla::net::nsHttpConnection::EnsureNPNComplete(nsresult&, unsigned int&) (in XUL) (nsHttpConnection.cpp:467) pc: 0x6c2323
+                                  mozilla::net::nsHttpConnection::OnSocketWritable() (in XUL) (nsHttpConnection.cpp:1731) pc: 0x6c3b20
+                                    mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:2257) pc: 0x6c5b27
+                                      non-virtual thunk to mozilla::net::nsHttpConnection::OnOutputStreamReady(nsIAsyncOutputStream*) (in XUL) (nsHttpConnection.cpp:0) pc: 0x6ccdce
+                                        mozilla::net::nsSocketOutputStream::OnSocketReady(nsresult) (in XUL) (nsCOMPtr.h:293) pc: 0x255fda
+                                          mozilla::net::nsSocketTransport::OnSocketReady(PRFileDesc*, short) (in XUL) (nsSocketTransport2.cpp:2197) pc: 0x25dec3
+                                            mozilla::net::nsSocketTransportService::DoPollIteration(mozilla::BaseTimeDuration<mozilla::TimeDurationValueCalculator>*) (in XUL) (nsSocketTransportService2.cpp:1194) pc: 0x267fa1
+                                              mozilla::net::nsSocketTransportService::Run() (in XUL) (atomic:926) pc: 0x266fc4
+
+------- #14 use call stack  
+JSScript::shareScriptData(JSContext*) (in XUL) (HashTable.h:843) pc: 0x5902c0a
+  bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:699) pc: 0x58ff118
+    bool js::XDRInterpretedFunction<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::MutableHandle<JSFunction*>) (in XUL) (jsfun.cpp:664) pc: 0x586e483
+      bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:873) pc: 0x58ff835
+        bool js::XDRInterpretedFunction<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::MutableHandle<JSFunction*>) (in XUL) (jsfun.cpp:664) pc: 0x586e483
+          bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:873) pc: 0x58ff835
+
+------- #16 free call stack  
+wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144) pc: 0x2e68e
+  js::detail::HashTable<js::SharedScriptData* const, js::HashSet<js::SharedScriptData*, js::ScriptBytecodeHasher, js::SystemAllocPolicy>::SetOps, js::SystemAllocPolicy>::changeTableSize(int, js::detail::HashTable<js::SharedScriptData* const, js::HashSet<js::SharedScriptData*, js::ScriptBytecodeHasher, js::SystemAllocPolicy>::SetOps, js::SystemAllocPolicy>::FailureBehavior) (in XUL) (Utility.h:258) pc: 0x594399d
+    bool js::detail::HashTable<js::SharedScriptData* const, js::HashSet<js::SharedScriptData*, js::ScriptBytecodeHasher, js::SystemAllocPolicy>::SetOps, js::SystemAllocPolicy>::add<js::SharedScriptData*&>(js::detail::HashTable<js::SharedScriptData* const, js::HashSet<js::SharedScriptData*, js::ScriptBytecodeHasher, js::SystemAllocPolicy>::SetOps, js::SystemAllocPolicy>::AddPtr&, js::SharedScriptData*&&&) (in XUL) (HashTable.h:1813) pc: 0x59435e2
+      JSScript::shareScriptData(JSContext*) (in XUL) (HashTable.h:413) pc: 0x5902f3e
+        bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:699) pc: 0x58ff118
+          bool js::XDRInterpretedFunction<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::MutableHandle<JSFunction*>) (in XUL) (jsfun.cpp:664) pc: 0x586e483
+            bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:873) pc: 0x58ff835
+              bool js::XDRInterpretedFunction<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::MutableHandle<JSFunction*>) (in XUL) (jsfun.cpp:664) pc: 0x586e483
+                bool js::XDRScript<(js::XDRMode)1>(js::XDRState<(js::XDRMode)1>*, JS::Handle<js::Scope*>, JS::Handle<js::ScriptSourceObject*>, JS::Handle<JSFunction*>, JS::MutableHandle<JSScript*>) (in XUL) (jsscript.cpp:873) pc: 0x58ff835
+
