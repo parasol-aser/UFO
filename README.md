@@ -1,5 +1,7 @@
 # UFO
-UFO: Predictive Detection of Concurrency Use-After-Free Vulnerabilities
+An automated tool to predictively detect use-after-free (UAF) vulnerabilities in multithreaded programs.
+
+Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detection" if you used our resource.
 
 
 ## UFO setup
