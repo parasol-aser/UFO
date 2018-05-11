@@ -150,11 +150,9 @@ ScopedReport::ScopedReport(ReportType typ, uptr tag) {
   rep_->typ = typ;
   rep_->tag = tag;
   ctx->report_mtx.Lock();
-  CommonSanitizerReportMutex.Lock();
 }
 
 ScopedReport::~ScopedReport() {
-  CommonSanitizerReportMutex.Unlock();
   ctx->report_mtx.Unlock();
   DestroyAndFree(rep_);
 }
