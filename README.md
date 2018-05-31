@@ -6,7 +6,7 @@ Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detect
 
 ## UFO setup
 
-#### Get LLVM 4.0.0 source code
+#### Get LLVM 6.0.0 source code
 
 http://releases.llvm.org/
 
@@ -18,7 +18,7 @@ Build step is the same as building LLVM, see also http://clang.llvm.org/get_star
 
 Example:
 ```
-cd llvm-4.0.0.src/
+cd llvm-6.0.0.src/
 mkdir build
 cd build/
 make -j10
