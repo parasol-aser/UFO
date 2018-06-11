@@ -26,7 +26,7 @@ make -j10
 
 For a faster build, you can exclude LLVM test and examples, e.g.,
 ```
-cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_EXAMPLES=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_ENABLE_ASSERTIONS=OFF $you_llvm$
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_EXAMPLES=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_ENABLE_ASSERTIONS=OFF $your_llvm_dir$
 make -j10
 ```
 
@@ -53,7 +53,7 @@ Next you can load and execute the code to get traces.
 
 There are several environment variables you can set to config the tracing:
 
-- **UFO_ON** (Boolean): set to __1__ to enable UFO tracing, or __0__ to disable UFO, UFO is enabled by default. 
+- **UFO_ON** (Boolean): set to __1__ to enable UFO tracing, or __0__ to disable UFO, UFO is disabled by default. 
 - **UFO_CALL** (Boolean): trace function call, disabled by default.
 - **UFO_TDIR** (String): the directory for your traces, by default it is ```./ufo_traces_*``` .
 - **UFO_TL_BUF** (Number): buffer size for each thread, in MB. By default it is 128 (128MB).
