@@ -66,7 +66,7 @@ Example:
  $ UFO_ON=1 UFO_CALL=1 UFO_TDIR=./ufo_test_trace UFO_TL_BUF=512 ./test
 ```
 In this example, the runtime library will create a buffer of 512MB for each thread.
-When the thread local buffer is full, this buffer is pushed to a queue and the data will flushed it asynchronously to disk.
+When the thread local buffer is full, this buffer is pushed to a queue and the data will be flushed asynchronously to disk.
 
 For each process, UFO will create a folder to store the thread local traces within that process, the process id is appended to the folder name. Assuming the main process is "1234", and the main process forked another process "1235",
 UFO will create folder `ufo_test_trace_1234` for the main process, and `ufo_test_trace_1235` for the other process.
