@@ -1,7 +1,11 @@
 # UFO
+
 An automated tool to predictively detect use-after-free (UAF) vulnerabilities in multithreaded programs.
 
 Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detection" if you used our resource.
+
+https://parasol.tamu.edu/people/jeff/academic/ufo.pdf
+
 
 
 ## UFO setup
@@ -10,7 +14,7 @@ Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detect
 
 http://releases.llvm.org/
 
-replace the folder `$you_llvm$/projects/compiler-rt/lib/tsan` with the `tsan` folder you found in this project
+replace the folder `$your_llvm_dir$/projects/compiler-rt/lib/tsan` with the `tsan` folder you found in this project
 
 #### Build project
 
@@ -53,13 +57,13 @@ Next you can load and execute the code to get traces.
 
 There are several environment variables you can set to config the tracing:
 
-- **UFO_ON** (Boolean): set to __1__ to enable UFO tracing, or __0__ to disable UFO, UFO is disabled by default. 
+- **UFO_ON** (Boolean): set to __1__ to enable UFO tracing, or __0__ to disable UFO, disabled by default. 
 - **UFO_CALL** (Boolean): trace function call, disabled by default.
 - **UFO_TDIR** (String): the directory for your traces, by default it is ```./ufo_traces_*``` .
 - **UFO_TL_BUF** (Number): buffer size for each thread, in MB. By default it is 128 (128MB).
-- **UFO_NO_STACK** (Boolean): do not trace read/write on stack or thread local storage, value is 0 by default.
-- **UFO_NO_VALUE** (Boolean): do not record read/write value, default setting is off.
-- **UFO_STAT** (Boolean): print statistic data, by default is 1. 
+- **UFO_NO_STACK** (Boolean): do not trace read/write on stack or thread local storage, enabled by default.
+- **UFO_NO_VALUE** (Boolean): do not record read/write value, disabled by default.
+- **UFO_STAT** (Boolean): print statistic data, enabled by default.
 
 Example:
 ```
