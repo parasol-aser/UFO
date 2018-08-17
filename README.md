@@ -21,11 +21,11 @@ replace the folder `$your_llvm_dir$/projects/compiler-rt/lib/tsan` with the `tsa
 Build step is the same as building LLVM, see also http://clang.llvm.org/get_started.html
 
 Example:
+First, create a build dir outside of llvm source dir (in-tree build not supported)
 ```
-cd llvm-6.0.0.src/
+cd $outside your_llvm_dir$
 mkdir build
 cd build/
-make -j10
 ```
 
 For a faster build, you can exclude LLVM test and examples, e.g.,
