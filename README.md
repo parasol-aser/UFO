@@ -2,9 +2,7 @@
 
 An automated tool to predictively detect use-after-free (UAF) vulnerabilities in multithreaded programs.
 
-Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detection" if you used our resource.
-
-https://parasol.tamu.edu/people/jeff/academic/ufo.pdf
+Please cite our ICSE'18 paper ["UFO: Predictive Concurrency Use-After-Free Detection"](https://parasol.tamu.edu/people/jeff/academic/ufo.pdf) if you used our resource.
 
 
 
