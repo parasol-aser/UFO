@@ -101,3 +101,7 @@ Then run the provided executable `runufo.jar`
 
 #### run in Eclipse
 The bug detection tool can be easily used in Eclipse. Create an Eclispe workspace and import the project `ufo-predict`. Run `UFOMain.java`. See more information in the folder `ufo-predict`.
+
+## TODO and Future Work
+- Crash-free program tracing
+- We wish to eventually remove the offline file analysis step and predictively detect UAFs during run-time 
