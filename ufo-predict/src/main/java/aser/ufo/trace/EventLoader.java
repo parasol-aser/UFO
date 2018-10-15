@@ -149,9 +149,10 @@ public class EventLoader {
         String moduleFullName = infoLs[idx++]; // name with path
         
         try {
-        long base = java.lang.Long.parseLong(infoLs[idx++].trim(), 16);
+        // TODO: check to make sure switch from parseLong to parseUnsignedLong didn't break existing code ANDREW
+        long base = java.lang.Long.parseUnsignedLong(infoLs[idx++].trim(), 16); 
         //JEFF
-        long max = java.lang.Long.parseLong(infoLs[idx++].trim(), 16);
+        long max = java.lang.Long.parseUnsignedLong(infoLs[idx++].trim(), 16);
         
         if(max>base)
         {

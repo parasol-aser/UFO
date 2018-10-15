@@ -88,8 +88,8 @@ symbolizer=atos
 solver_mem=2000
 # window size
 window_size=100000
-# solve constraints or not
-fast_detect=true
+# do not solve constraints if true
+fast_detect=false
 ```
 
 Then run the provided executable `runufo.jar`
@@ -98,4 +98,4 @@ Then run the provided executable `runufo.jar`
 ```
 
 #### run in Eclipse
-The bug detection tool can be easily used in Eclipse. Create an Eclispe workspace and import the project `ufo-predict`. Run `UFOMain.java`. See more information in the folder `ufo-predict`.
+The bug detection tool can be easily used in Eclipse. Create an Eclipse workspace and import the project `ufo-predict`. Run `UFOMain.java`. See more information in the folder `ufo-predict`.

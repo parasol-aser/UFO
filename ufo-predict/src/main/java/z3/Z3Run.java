@@ -52,7 +52,7 @@ import it.unimi.dsi.fastutil.longs.LongArrayList;
  *
  */
 public class Z3Run {
-  private static final String SOLVER_FULL_STRING = "/usr/local/bin/z3";
+  private static final String SOLVER_FULL_STRING = "/usr/bin/z3"; // TODO: add option to change path in config? ANDREW
 protected static String Z3_SMT2 = ".z3smt2";
   protected static String Z3_OUT = ".z3out";
   protected static String Z3_ERR = ".z3err.";
