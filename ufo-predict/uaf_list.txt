@@ -71,3 +71,89 @@ wrap_free (in libclang_rt.tsan_osx_dynamic.dylib) (sanitizer_malloc_mac.inc:144)
   /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
     /home/andrewchin/Documents/ufo/test.cc:55 pc: 0x4b6391
 
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
+#1 Session   candidateUafLs: 1
+#1  UAF
+
+------- #1 use call stack  
+/home/andrewchin/Documents/ufo/test.cc:15 pc: 0x4b5fb8
+  /home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:882 pc: 0x423e9e
+
+------- #0 free call stack  
+/home/andrewchin/Documents/llvm/llvm-6.0.0/projects/compiler-rt/lib/tsan/rtl/tsan_interceptors.cc:624 pc: 0x4271c8
+  /home/andrewchin/Documents/ufo/test.cc:26 pc: 0x4b6099
+    /home/andrewchin/Documents/ufo/test.cc:46 pc: 0x4b62cd
+
