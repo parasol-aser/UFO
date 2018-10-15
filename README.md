@@ -36,7 +36,7 @@ make -j10
 
 Follow https://github.com/Z3Prover/z3
 
-
+add z3 to your PATH
 
 ## UFO Usage
 
