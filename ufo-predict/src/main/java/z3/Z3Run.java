@@ -93,7 +93,7 @@ protected static String Z3_SMT2 = ".z3smt2";
     //z3ErrFile = Util.newOutFile(Z3_ERR+taskId);//looks useless
 
     //command line to Z3 solver
-    CMD = "z3 -T:" + config.solver_timeout + " -memory:" + config.solver_memory + " -smt2 ";
+    CMD = /*SOLVER_FULL_STRING+*/"z3 -T:" + config.solver_timeout + " -memory:" + config.solver_memory + " -smt2 ";
   }
 
   /**
