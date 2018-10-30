@@ -4,13 +4,13 @@ An automated tool to predictively detect use-after-free (UAF) vulnerabilities in
 Please cite our ICSE'18 paper "UFO: Predictive Concurrency Use-After-Free Detection" if you used our resource.
 
 
-## UFO setup
+## UFO setup (tested on Mac OSX 10.11.5)
 
-#### Get LLVM 4.0.0 source code
+#### Get LLVM 7.0.0 source code
 
 http://releases.llvm.org/
 
-replace the folder `$you_llvm$/projects/compiler-rt/lib/tsan` with the `tsan` folder you found in this project
+replace the folder `$you_llvm$/projects/compiler-rt` with the `ufo-rt` folder you found in this project
 
 #### Build project
 
@@ -18,16 +18,16 @@ Build step is the same as building LLVM, see also http://clang.llvm.org/get_star
 
 Example:
 ```
-cd llvm-4.0.0.src/
+cd llvm/
 mkdir build
 cd build/
-make -j10
+make -j8
 ```
 
 For a faster build, you can exclude LLVM test and examples, e.g.,
 ```
 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF -DLLVM_BUILD_EXAMPLES=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_ENABLE_ASSERTIONS=OFF $you_llvm$
-make -j10
+make -j8
 ```
 
 #### Install z3 
