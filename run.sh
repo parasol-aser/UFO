@@ -5,7 +5,7 @@ export BRANCH=release_70
 git clone http://llvm.org/git/llvm.git -b $BRANCH
 git clone http://llvm.org/git/clang.git llvm/tools/clang -b $BRANCH
 git clone http://llvm.org/git/clang-tools-extra.git llvm/tools/clang/tools/extra -b $BRANCH
-mv compiler-rt llvm/projects/
+mv ufo-rt llvm/projects/
 mkdir build
 cd build
 cmake -G "Unix Makefiles" ../llvm
