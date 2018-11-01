@@ -1,5 +1,5 @@
 #!/bin/sh
-# sutomatically builds everything you need to start using UFO
+# automatically builds everything you need to start using UFO
 
 # get source code for LLVM, Clang, and Compiler Runtime
 svn co https://llvm.org/svn/llvm-project/llvm/tags/RELEASE_600/final/
