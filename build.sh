@@ -1,6 +1,11 @@
 #!/bin/sh
 # automatically builds everything you need to start using UFO
 
+# install dependencies
+# you will be asked to enter your password
+sudo apt-get install -y subversion
+sudo apt-get install -y z3
+
 # get source code for LLVM, Clang, and Compiler Runtime
 svn co https://llvm.org/svn/llvm-project/llvm/tags/RELEASE_600/final/
 mv final/ llvm-6.0.0/
