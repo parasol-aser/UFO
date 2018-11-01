@@ -1,17 +1,6 @@
 #!/bin/sh
 # sutomatically builds everything you need to start using UFO
 
-# install dependencies
-# this will prompt you to enter your password!
-sudo apt-get update
-sudo apt-get install -y git
-sudo apt-get install -y subversion
-sudo apt-get install -y z3
-
-# get the UFO source code
-git clone https://github.com/parasol-aser/ufo/
-cd ufo/
-
 # get source code for LLVM, Clang, and Compiler Runtime
 svn co https://llvm.org/svn/llvm-project/llvm/tags/RELEASE_600/final/
 mv final/ llvm-6.0.0/
