@@ -1,8 +1,12 @@
 #!/bin/sh
 # automatically builds everything you need to start using UFO
 
+# first, you should already have the UFO source code (that's how you're here!)
+# first navigate to your ufo directory (cd $somepath$/ufo)
+
 # install dependencies
 # you will be asked to enter your password
+sudo apt-get update
 sudo apt-get install -y subversion
 sudo apt-get install -y z3
 
