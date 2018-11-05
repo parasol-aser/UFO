@@ -28,7 +28,8 @@ cp -r ../../../../tsan/ .
 
 # build LLVM (this will take a couple of hours)
 cd ../../../../ && mkdir build && cd build
-cmake -G "Unix Makefiles" ../llvm
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLLVM_INCLUDE_TESTS=OFF \
+  -DLLVM_BUILD_EXAMPLES=OFF -DLLVM_INCLUDE_EXAMPLES=OFF -DLLVM_ENABLE_ASSERTIONS=OFF ../llvm-6.0.0/
 make -j8
 
 # now, follow the instructions in ufo/README.md to start using UFO!
