@@ -4,7 +4,17 @@ An automated tool to predictively detect use-after-free (UAF) vulnerabilities in
 
 Please cite our ICSE'18 paper ["UFO: Predictive Concurrency Use-After-Free Detection"](https://parasol.tamu.edu/people/jeff/academic/ufo.pdf) if you used our resource.
 
+## Quick Start
 
+If you just want to try out UFO and do not want to clutter your local host, you can easily build and run LLVM+UFO in a Docker container.
+
+First, install Docker. See https://docs.docker.com/install/.
+
+Pull the Docker image using `docker pull 4ndychin/llvm-ufo` *(Note: the image is about 5 GB).*
+
+Then, you can run a shell containing the build using `docker run -it 4ndychin/llvm-ufo`.
+
+Now you can skip to the UFO Usage Section *(Note: the environment has limited text editing capabilities. Familiarize yourself with the basics of using `vim` if you have not done so).*
 
 ## UFO setup
 
