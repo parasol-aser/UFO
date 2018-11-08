@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 int x = 0;
 int *p;
-int *q;        
+int *q;
 pthread_t new_thread;
 pthread_mutex_t l;
 pthread_cond_t cond;
+struct timespec wait_time; // ANDREW: prevent deadlock
+struct timeval now;
 
 void *thread_start(void*) {
     pthread_mutex_lock(&l);
@@ -16,9 +19,9 @@ void *thread_start(void*) {
         if(x == 0)
            *p = 0;
     pthread_mutex_unlock(&l);
-    usleep(10);     
+    usleep(100);
     pthread_cond_signal(&cond);
-    return 0; 
+    return 0;
 }
 
 void deallocate(void *z) {
@@ -26,10 +29,13 @@ void deallocate(void *z) {
 }
 
 int main() {
-	p = (int*)malloc(sizeof(int));
+    p = (int*)malloc(sizeof(int));
     q = (int*)malloc(sizeof(int));
     pthread_mutex_init(&l, NULL);
     pthread_cond_init(&cond, NULL);
+
+    gettimeofday(&now, NULL);
+    wait_time.tv_sec = now.tv_sec + 5;
 
     printf("pointer p: %p %p\n", &p, p);
     printf("pointer q: %p %p\n", &q, q);
@@ -47,7 +53,7 @@ int main() {
 
     pthread_mutex_lock(&l);
        x = 1;
-       pthread_cond_wait(&cond, &l);
+       pthread_cond_timedwait(&cond, &l, &wait_time); // ANDREW: prevent deadlock
     pthread_mutex_unlock(&l);
 
     deallocate(p);
@@ -55,3 +61,4 @@ int main() {
 
 	return 0;
 }
+
