@@ -44,9 +44,6 @@ public class EventLoader {
     windowSize = wsz;
 
     final File dir = new File(folderName);
-    if (!dir.isDirectory()) {
-      throw new RuntimeException("Could not find folder " + folderName);
-    }
     File[] traces = dir.listFiles(new FileFilter() {
       public boolean accept(File f) {
         if (!f.canRead()) {
@@ -56,7 +53,9 @@ public class EventLoader {
       }
     });
     if (traces == null)
-      throw new IllegalArgumentException("No trace file found at " + folderName);
+    	throw new RuntimeException("Could not find folder " + folderName);
+    if (traces.length == 0)
+    	throw new IllegalArgumentException("No trace file found at " + folderName);
 //    int flimt = 2;
     
     
