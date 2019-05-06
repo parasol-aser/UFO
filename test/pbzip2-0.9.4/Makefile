@@ -2,7 +2,7 @@
 SHELL=/bin/sh
 
 # Compiler to use
-CC=clang++
+CC=../../build/bin/clang++
 
 CLANG_ARGS=-fsanitize=thread -g -v -o0 -Wall -std=c++11 -stdlib=libc++ -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/
 
