@@ -1,5 +1,7 @@
 #!/bin/sh
 
+UFO_HOME=$PWD
+
 # install git and cmake
 sudo apt install git cmake
 
@@ -15,16 +17,16 @@ make -j8
 export PATH=$PWD/bin:$PATH
 
 # get src for chromium 70.0.3537.0 (last build to use clang 7.0.0)
-cd .. && mkdir chromium && cd chromium
+cd UFO_HOME && mkdir chromium && cd chromium
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH=$PWD/depot_tools:$PATH
 fetch --nohooks chromium
-cd src && sudo ./build/install-build-deps.sh
+cd src && ./build/install-build-deps.sh
 git checkout tags/70.0.3537.0 -b v70.0.3537.0
 gclient sync
 gn gen out/ufo
-mv ../../args.gn ./out/ufo/
-mv ../../BUILD.gn ./build/config/compiler/
+mv UFO_HOME/args.gn ./out/ufo/
+mv UFO_HOME/BUILD.gn ./build/config/compiler/
 # alternatively, instead of adding to the tail of $PATH, we could copy chromium's
 # lld and its symbolic links into our ufo/build/bin directory. You should change
 # to the alternative if you have lld defined already in your path somewhere.
