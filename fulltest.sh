@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# install git
+# install git and cmake
 sudo apt install git cmake
 
 # build LLVM+UFO
