@@ -4,6 +4,10 @@ An automated tool to predictively detect use-after-free (UAF) vulnerabilities in
 
 Please cite our ICSE'18 paper ["UFO: Predictive Concurrency Use-After-Free Detection"](https://parasol.tamu.edu/people/jeff/academic/ufo.pdf) if you used our resource.
 
+***\*\*\*NEW***
+If you want to build LLVM 7.0.0+UFO and Chromium in one fell swoop, use the build script `fullbuild.sh`. The best way to run this script is `sudo ./fullbuild.sh`, so the script will fully execute without stopping and waiting for the user to enter their password to download additional binaries (This has only been tested on Ubuntu 16.04.6, but should work for other Linux distros).
+
+
 ## Quick Start
 
 If you just want to try out UFO and do not want to clutter your local host, you can easily build and run LLVM+UFO in a Docker container.
