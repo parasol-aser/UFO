@@ -16,13 +16,13 @@ cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DLLVM_BUILD_TESTS=OFF -DLL
 make -j8
 export PATH=$UFO_HOME/build/bin:$PATH
 
-# get src for chromium 70.0.3537.0 (last build to use clang 7.0.0)
+# get src for chromium 70.0.3537.2 (last build to use clang 7.0.0)
 cd $UFO_HOME && mkdir chromium && cd chromium
 git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 export PATH=$UFO_HOME/chromium/depot_tools:$PATH
 fetch --nohooks chromium
 cd src && ./build/install-build-deps.sh
-git checkout tags/70.0.3537.0 -b v70.0.3537.0
+git checkout tags/70.0.3537.2 -b v70.0.3537.2
 gclient sync
 gn gen out/ufo
 mv $UFO_HOME/args.gn ./out/ufo/
