@@ -23,6 +23,10 @@ export PATH=$UFO_HOME/chromium/depot_tools:$PATH
 fetch --nohooks chromium
 cd src && ./build/install-build-deps.sh
 git checkout tags/70.0.3537.2 -b v70.0.3537.2
+# NOTE: if gclient sync terminates bc of error 57 (unstaged changes), you should
+# follow the steps found in this thread:
+# https://groups.google.com/a/chromium.org/forum/#!topic/chromium-dev/SgwR4kEMZ7I
+# Then, you can run the commands STARTING from gclient sync
 gclient sync
 gn gen out/ufo
 mv $UFO_HOME/args.gn ./out/ufo/
