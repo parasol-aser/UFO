@@ -1,5 +1,11 @@
 #!/bin/sh
 
+RED='\033[0;31m'
+NC='\033[0m'
+
+# comment this when you have modified args.gn
+echo "First, please modify args.gn to to set ${RED}clang_base_path = {UFO_DIR}/build${NC}"; exit;
+
 UFO_HOME=$PWD
 
 # install git and cmake
