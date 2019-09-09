@@ -5,7 +5,7 @@ An automated tool to predictively detect use-after-free (UAF) vulnerabilities in
 Please cite our ICSE'18 paper ["UFO: Predictive Concurrency Use-After-Free Detection"](https://parasol.tamu.edu/people/jeff/academic/ufo.pdf) if you used our resource.
 
 ***\*\*\*NEW***
-If you want to build LLVM 7.0.0+UFO and Chromium in one fell swoop, use the build script `fullbuild.sh`. The best way to run this script is `./fullbuild.sh`. Note that halfway through you will need to enter your password to download additional binaries (This has only been tested on Ubuntu 16.04.6, but should work for other Linux distros).
+If you want to build LLVM 7.1.0+UFO and Chromium in one fell swoop, use the build script `fullbuild.sh`. The best way to run this script is `./fullbuild.sh`. Note that halfway through you will need to enter your password to download additional binaries (This has only been tested on Ubuntu 16.04.6, but should work for other Linux distros).
 
 
 ## Quick Start
@@ -22,7 +22,7 @@ Now you can skip to the UFO Usage Section *(Note: the environment has limited te
 
 ## UFO setup
 
-#### Get LLVM 7.0.0 source code
+#### Get LLVM 7.1.0 source code
 
 http://releases.llvm.org/ (download `llvm` and `clang`, or use the following scripts)
 
@@ -32,7 +32,7 @@ git clone http://llvm.org/git/llvm.git -b $BRANCH
 git clone http://llvm.org/git/clang.git llvm/tools/clang -b $BRANCH
 ```
 
-replace the folder `$your_llvm_dir$/projects/compiler-rt/lib/tsan` with the `tsan` folder you found in this project
+copy the folder `ufo-rt` found in this project into `$your_llvm_dir$/projects/`.
 
 #### Build project
 
