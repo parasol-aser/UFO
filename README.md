@@ -22,15 +22,14 @@ Now you can skip to the UFO Usage Section *(Note: the environment has limited te
 
 ## UFO setup
 
-#### Get LLVM 6.0.0 source code
+#### Get LLVM 7.0.0 source code
 
-http://releases.llvm.org/ (download `llvm`, `clang`, and `clang-tools-extra`, or use the following scripts)
+http://releases.llvm.org/ (download `llvm` and `clang`, or use the following scripts)
 
 ```
-export BRANCH=release_60
+export BRANCH=release_70
 git clone http://llvm.org/git/llvm.git -b $BRANCH
 git clone http://llvm.org/git/clang.git llvm/tools/clang -b $BRANCH
-git clone http://llvm.org/git/clang-tools-extra.git llvm/tools/clang/tools/extra -b $BRANCH
 ```
 
 replace the folder `$your_llvm_dir$/projects/compiler-rt/lib/tsan` with the `tsan` folder you found in this project
