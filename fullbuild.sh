@@ -44,3 +44,11 @@ export PATH=$PATH:$UFO_HOME/chromium/src/third_party/llvm-build/Release+Asserts/
 
 # build chromium
 autoninja -C out/ufo chrome
+
+# SANDBOX
+# NOTE: "The Linux SUID sandbox is almost but not completely removed"
+# you may only need to do this when building older versions of Chromium
+# https://chromium.googlesource.com/chromium/src/+/master/docs/linux_suid_sandbox_development.md
+# alternatively, instead of building sandbox you can pass '--no-sandbox' to chrome binary
+autoninja -C out/ufo chrome_sandbox
+echo 'export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox' >> ~/.bashrc 
